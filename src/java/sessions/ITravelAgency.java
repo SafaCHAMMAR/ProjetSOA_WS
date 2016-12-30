@@ -17,5 +17,5 @@ import javax.ejb.Local;
 public interface ITravelAgency {
     public void addAdmin(Admin a);
     public List<Admin> getAllAdmin();
-    
+    public boolean existAdmin(String login,String pwd);
 }

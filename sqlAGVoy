@@ -1,0 +1,31 @@
+select * from `Admin`;
+
+CREATE TABLE Client
+(
+idClient int NOT NULL AUTO_INCREMENT,nom varchar(25) NOT NULL,prenom varchar(25),adresse varchar(50),
+email varchar(45),cin int (10),PRIMARY KEY (idClient)
+);
+
+CREATE TABLE Ville
+(idVille int NOT NULL AUTO_INCREMENT,ville varchar(55) NOT NULL,continent varchar(55),PRIMARY KEY (idVille))
+
+CREATE TABLE Ville
+(
+idVille int NOT NULL AUTO_INCREMENT,ville varchar(55) NOT NULL,continent varchar(55),PRIMARY KEY (idVille)
+);
+
+CREATE TABLE Vol
+(
+idVol int NOT NULL AUTO_INCREMENT,
+villeDep varchar(55) NOT NULL,
+villeDest varchar(55) NOT NULL,
+placeDisp int NOT NULL,
+prix int,dateDep Date,dateArr Date,
+PRIMARY KEY (idVol)
+);
+
+create table Reservation
+(
+idRes int not null auto_increment,idVol int ,idClient int,dateRes date,
+primary key(idRes),FOREIGN KEY (idVol) REFERENCES Vol(idVol),FOREIGN KEY (idClient) REFERENCES Client(idClient)
+);

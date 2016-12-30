@@ -37,4 +37,9 @@ public class AdminWS {
     public List<Admin> listAdmin() {
         return metier.getAllAdmin();
     }
+    
+    @WebMethod
+    public boolean existAdmin(String login,String pwd){
+        return metier.existAdmin(login, pwd);
+    }
 }
