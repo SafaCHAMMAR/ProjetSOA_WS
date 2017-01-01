@@ -10,6 +10,8 @@ package sessions;
  * @author safa
  */
 import entities.Admin;
+import entities.Vol;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,4 +43,19 @@ public class TravelAgencyImp implements ITravelAgency{
         }
         else return false;
      }
+
+    @Override
+    public void addVoy(Vol v) {
+        System.out.println("******voy  impl**********");
+        System.out.println(v.getVilleDep());
+        System.out.println(v.getVilleDest());
+        System.out.println(v.getPlaceDisp());
+        System.out.println(v.getPrix());
+       System.out.println(v.getDateDep());
+        System.out.println(v.getDateArr());
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   //Query req=em.createNamedQuery("Vol.insert").setParameter("",login).setParameter("pwd", pwd);
+        em.persist(v);
+    }
 }

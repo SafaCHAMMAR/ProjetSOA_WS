@@ -6,6 +6,8 @@
 package sessions;
 
 import entities.Admin;
+import entities.Vol;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,4 +20,5 @@ public interface ITravelAgency {
     public void addAdmin(Admin a);
     public List<Admin> getAllAdmin();
     public boolean existAdmin(String login,String pwd);
+    public void addVoy(Vol v);
 }
