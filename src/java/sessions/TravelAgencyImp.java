@@ -32,7 +32,7 @@ public class TravelAgencyImp implements ITravelAgency{
     @Override
     public List<Admin> getAllAdmin() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Query req=/*em.createNamedQuery("Admin.findByLogin").setParameter("login","safa");*/em.createQuery("select a from Admin a  where a.login = 'safa' ");
+        Query req=/*em.createNamedQuery("Admin.findByLogin").setParameter("login","safa");*/em.createQuery("select a from Admin a ");
         return req.getResultList();
     }
     @Override

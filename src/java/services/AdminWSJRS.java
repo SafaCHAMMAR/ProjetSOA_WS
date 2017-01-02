@@ -27,44 +27,23 @@ import sessions.ITravelAgency;
 @Path("/adminWS")
 @Produces(MediaType.APPLICATION_JSON)
 public class AdminWSJRS {
-    
+
     @EJB
     private ITravelAgency metier;
-    
+
     @POST
     @Path("/check")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response checkDetails(@FormParam("login") String login,@FormParam("pwd") String pwd ) throws URISyntaxException  {
-
-       // URI uri = new URI("http://localhost:8080/Travel_Agency/adminWS/success");
-        //URI uri2= new URI("http://localhost:8080/Travel_Agency/adminWS/failure");
-//System.out.println("\n\n ------------login="+name+"   pwd="+pass+"------------\n\n");
-       // if(name.equals("admin") && pass.equals("pass"))
-    if (metier.existAdmin(login, pwd))
-            {//System.out.println("\n test\n");
+    public Response checkDetails(@FormParam("login") String login, @FormParam("pwd") String pwd) throws URISyntaxException {
+        if (metier.existAdmin(login, pwd)) {
             URI uri3 = UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient/espaceAdmin.jsp").build();
-    return Response.seeOther(uri3).build();
-            
-            }
-       else
-        {
+            return Response.seeOther(uri3).build();
+
+        } else {
             URI uri3 = UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient").build();
-    return Response.seeOther(uri3).build();
-            //Response.seeOther(uri2);
-            //return Response.status(200).entity("user logon failed").build();
-            }
-   }
-     @POST
-    @Path("/success")
-    public Response successpage()
-    {System.out.println("\n succeeeeeeeeeeeeeeees\n");
-    return Response.status(200).entity("user successfully login").build();
+            return Response.seeOther(uri3).build();
+
+        }
     }
-    @POST
-    @Path("/failure")
-    public Response failurepage()
-    {System.out.println("\n failure \n");
-    return Response.status(200).entity("user login failed").build();
-    }   
-    
+
 }
