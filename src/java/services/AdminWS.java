@@ -64,4 +64,11 @@ public class AdminWS {
         }
         
     }
+    
+    
+    @WebMethod
+    public void addBooking(@WebParam(name = "idVoy") int idVol,@WebParam(name = "idClient") int idClient) {
+        //Admin a=new Admin(lg, mdp);
+        metier.addBooking(idVol,idClient);
+    }
 }

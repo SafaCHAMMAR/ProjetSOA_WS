@@ -10,6 +10,8 @@ package sessions;
  * @author safa
  */
 import entities.Admin;
+import entities.Client;
+import entities.Reservation;
 import entities.Vol;
 import java.util.Date;
 import java.util.List;
@@ -25,14 +27,12 @@ public class TravelAgencyImp implements ITravelAgency{
     
     @Override
     public void addAdmin(Admin a) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    em.persist(a);
+        em.persist(a);
     }
 
     @Override
     public List<Admin> getAllAdmin() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Query req=/*em.createNamedQuery("Admin.findByLogin").setParameter("login","safa");*/em.createQuery("select a from Admin a ");
+        Query req=em.createQuery("select a from Admin a ");
         return req.getResultList();
     }
     @Override
@@ -46,16 +46,21 @@ public class TravelAgencyImp implements ITravelAgency{
 
     @Override
     public void addVoy(Vol v) {
-        System.out.println("******voy  impl**********");
-        System.out.println(v.getVilleDep());
-        System.out.println(v.getVilleDest());
-        System.out.println(v.getPlaceDisp());
-        System.out.println(v.getPrix());
-       System.out.println(v.getDateDep());
-        System.out.println(v.getDateArr());
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   //Query req=em.createNamedQuery("Vol.insert").setParameter("",login).setParameter("pwd", pwd);
         em.persist(v);
+    }
+    @Override
+    public void addBooking(int idVl,int idClt) {
+        System.out.println("idVol= "+idVl);
+        Query req=em.createNamedQuery("Client.findByIdClient").setParameter("idClient",idClt);
+        Client clt=(Client) req.getSingleResult();
+        req=em.createNamedQuery("Vol.findByIdVol").setParameter("idVol",idVl);
+        Vol v=(Vol) req.getSingleResult();
+        Reservation r =new Reservation(v,clt);
+       em.persist(r);
+       
+    }
+    public List<Vol> getAllVol(){
+        Query req=em.createNamedQuery("Vol.findAll");
+        return req.getResultList();
     }
 }

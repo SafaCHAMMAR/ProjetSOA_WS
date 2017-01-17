@@ -5,12 +5,15 @@
  */
 package services;
 
+import entities.Vol;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -35,15 +38,22 @@ public class AdminWSJRS {
     @Path("/check")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response checkDetails(@FormParam("login") String login, @FormParam("pwd") String pwd) throws URISyntaxException {
-        if (metier.existAdmin(login, pwd)) {
-            URI uri3 = UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient/espaceAdmin.jsp").build();
-            return Response.seeOther(uri3).build();
+       if (metier.existAdmin(login, pwd)) {
+            URI uri= UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient/espaceAdmin.jsp").build();
+            return Response.seeOther(uri).build();
 
         } else {
-            URI uri3 = UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient").build();
-            return Response.seeOther(uri3).build();
+            URI uri = UriBuilder.fromPath("http://localhost:8080/TravelAgencyJSPClient").build();
+            return Response.seeOther(uri).build();
 
         }
+        
     }
+   @GET
+    @Path("/allVoyages")
+    public List<Vol> produitsParMC()
+     {
+         return metier.getAllVol();
+     } 
 
 }

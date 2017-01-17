@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.Admin;
+import entities.Reservation;
 import entities.Vol;
 import java.util.Date;
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ITravelAgency {
     public List<Admin> getAllAdmin();
     public boolean existAdmin(String login,String pwd);
     public void addVoy(Vol v);
+    public void addBooking(int idVol,int idClient);
+    public List<Vol> getAllVol();
 }
